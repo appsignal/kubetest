@@ -46,3 +46,17 @@ To deploy the latest version of the image:
 ```
 kubectl rollout restart deployment.apps/kubetest-deployment
 ```
+
+## Console access
+
+To prod around with bash get a pod id:
+
+```
+kubectl get pod -o wide
+```
+
+And run:
+
+```
+kubectl exec -it <id> bash
+```

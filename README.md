@@ -34,3 +34,15 @@ kubectl get pods
 ```
 
 And you can now open the app on http://localhost:4567.
+
+To delete the deployment run:
+
+```
+kubectl delete -f k8s
+```
+
+To deploy the latest version of the image:
+
+```
+kubectl rollout restart deployment.apps/kubetest-deployment
+```

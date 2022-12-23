@@ -6,7 +6,7 @@ instructions in https://kubernetes-rails.com
 Build the image:
 
 ```
-docker build -t appsignal/kubetest:latest .
+docker build --build-arg revision=$(git rev-parse HEAD) -t appsignal/kubetest:latest .
 ```
 
 Then run it and check that it works:

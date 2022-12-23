@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kubetest-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sinatra-app
+  template:
+    metadata:
+      labels:
+        app: sinatra-app
+    spec:
+      containers:
+      - name: sinatra-app
+        image: appsignal/kubetest:latest
+        ports:
+          - containerPort: 4567

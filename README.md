@@ -1,6 +1,9 @@
 # Kubernetes test setup
 
-Barebones Ruby on Kubernetes test setup. Build the image:
+Barebones Ruby on Kubernetes test setup. Mostly following the
+instructions in https://kubernetes-rails.com
+
+Build the image:
 
 ```
 docker build -t appsignal/kubetest:latest .

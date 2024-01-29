@@ -63,3 +63,11 @@ And run:
 ```
 kubectl exec -it kubetest-deployment-7ddc65cb8b-zcrhd -- bash
 ```
+
+## Logs
+
+To tail the logs for a pod:
+
+```
+kubectl logs kubetest-deployment-7ddc65cb8b-zcrhd --follow
+```

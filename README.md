@@ -49,14 +49,17 @@ kubectl rollout restart deployment.apps/kubetest-deployment
 
 ## Console access
 
-To prod around with bash get a pod id:
+To prod around with bash get a pod name (`kubetest-deployment-7ddc65cb8b-zcrhd`, for example):
 
 ```
 kubectl get pod -o wide
+
+NAME                                   READY   STATUS    RESTARTS   AGE     IP         NODE             NOMINATED NODE   READINESS GATES
+kubetest-deployment-7ddc65cb8b-zcrhd   1/1     Running   0          5m19s   10.1.0.6   docker-desktop   <none>           <none>
 ```
 
 And run:
 
 ```
-kubectl exec -it <id> bash
+kubectl exec -it kubetest-deployment-7ddc65cb8b-zcrhd -- bash
 ```

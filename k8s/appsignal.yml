@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appsignal-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: appsignal
+  template:
+    metadata:
+      labels:
+        app: appsignal
+    spec:
+      containers:
+      - name: appsignal
+        image: appsignal/agent:latest
+        env:
+          - name: APPSIGNAL_ACTIVE
+            value: "true"
+          - name: APPSIGNAL_APP_NAME
+            value: "kubetest"
+          - name: APPSIGNAL_APP_ENV
+            value: "development"
+          - name: APPSIGNAL_PUSH_API_KEY
+            value: "00000000-0000-0000-0000-000000000000"
+          - name: APPSIGNAL_LOG
+            value: "stdout"
+        ports:
+          - containerPort: 8099

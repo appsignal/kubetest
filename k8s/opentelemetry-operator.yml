@@ -1,0 +1,46 @@
+apiVersion: opentelemetry.io/v1alpha1
+kind: OpenTelemetryCollector
+metadata:
+  name: appsignal-deployment
+spec:
+  mode: deployment # This configuration is omittable.
+  env:
+    - name: K8S_NODE_NAME
+      valueFrom:
+        fieldRef:
+          fieldPath: spec.nodeName
+  config: |
+    receivers:
+      jaeger:
+        protocols:
+          grpc:
+      kubeletstats:
+        collection_interval: 10s
+        auth_type: 'serviceAccount'
+        endpoint: '${env:K8S_NODE_NAME}:10250'
+        insecure_skip_verify: true
+        metric_groups:
+          - node
+          - pod
+          - container
+      # k8s_cluster:
+      #   collection_interval: 10s
+      #   # auth_type: 'serviceAccount'
+
+    processors:
+
+    exporters:
+      debug:
+        verbosity: detailed
+
+    service:
+      pipelines:
+        traces:
+          receivers: [jaeger]
+          processors: []
+          exporters: [debug]
+        metrics:
+          receivers: [kubeletstats]
+          # receivers: [k8s_cluster]
+          processors: []
+          exporters: [debug]

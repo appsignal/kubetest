@@ -26,5 +26,7 @@ spec:
             value: "00000000-0000-0000-0000-000000000000"
           - name: APPSIGNAL_LOG
             value: "stdout"
+          - name: APPSIGNAL_LOG_LEVEL
+            value: "debug"
         ports:
           - containerPort: 8099
